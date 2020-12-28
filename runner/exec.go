@@ -22,7 +22,9 @@ func runCommand(params runCommandParams) {
 		program = "timeout"
 		arguments = []string{
 			params.timeout,
-			`bash -c "` + command + `"`,
+			"bash",
+			"-c",
+			command,
 		}
 	}
 
