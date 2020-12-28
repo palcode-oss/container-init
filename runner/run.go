@@ -3,7 +3,6 @@ package runner
 import (
 	"fmt"
 	"os"
-	"os/exec"
 )
 
 type ModuleFunction func(projectPath string) ([]string, bool, bool)
@@ -25,7 +24,12 @@ func Run(
 			removeEnv(projectPath)
 		}
 
-		runCode(command, timeoutString, projectPath)
+		runCommand(runCommandParams{
+			command:    command,
+			timeout:    timeoutString,
+			directory:  projectPath,
+			allowInput: true,
+		})
 		os.Exit(0)
 		return
 	}
@@ -35,22 +39,28 @@ func Run(
 		fmt.Println("This probably indicates a syntax error on your part.")
 		fmt.Println("I'll run your code now so you can see what happened:")
 
-		runCommand := exec.Command(
-			"bash",
-			"-c",
-			"timeout 3s "+command,
-		)
-
-		runCommand.Stdout = os.Stdout
-		runCommand.Stderr = os.Stderr
-		_ = runCommand.Run()
+		runCommand(runCommandParams{
+			command:    command,
+			timeout:    "3s",
+			directory:  projectPath,
+			allowInput: false,
+		})
 		os.Exit(1)
 		return
 	}
 
 	envSetupFunction(projectPath)
 	moduleCommand := moduleCommandGenerator(modules)
-	runInstall(moduleCommand, projectPath)
-	runCode(command, timeoutString, projectPath)
+	runCommand(runCommandParams{
+		command:    moduleCommand,
+		directory:  projectPath,
+		allowInput: false,
+	})
+	runCommand(runCommandParams{
+		command:    command,
+		timeout:    timeoutString,
+		directory:  projectPath,
+		allowInput: true,
+	})
 	os.Exit(0)
 }

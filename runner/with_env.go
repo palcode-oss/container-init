@@ -2,7 +2,7 @@ package runner
 
 import "os/exec"
 
-func withEnv(command, directory string) *exec.Cmd {
+func withEnv(command, directory string) *runCommand.Cmd {
 	return exec.Command(
 		"bash",
 		"-c",
