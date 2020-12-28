@@ -9,6 +9,13 @@ type ModuleFunction func(projectPath string) ([]string, bool, bool)
 type EnvSetupFunction func(projectPath string)
 type ModuleCommandGenerator func(modules []string) string
 
+type runParams struct {
+	command                string
+	moduleFunction         ModuleFunction
+	moduleCommandGenerator ModuleCommandGenerator
+	envSetupFunction       EnvSetupFunction
+}
+
 func Run(
 	command string,
 	moduleFunction ModuleFunction,
