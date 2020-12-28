@@ -3,6 +3,7 @@ package runner
 import (
 	"os"
 	"os/exec"
+	"strings"
 )
 
 type runCommandParams struct {
@@ -11,15 +12,15 @@ type runCommandParams struct {
 }
 
 func runCommand(params runCommandParams) {
-	command := params.command
+	command := strings.ReplaceAll(params.command, `"`, `\"`)
 	if params.timeout != "" {
-		command = "timeout " + params.timeout + " " + params.command
+		command = "timeout " + params.timeout + " " + command
 	}
 
 	instance := exec.Command(
 		"bash",
 		"-c",
-		command,
+		`"`+command+`"`,
 	)
 
 	if params.directory != "" {
