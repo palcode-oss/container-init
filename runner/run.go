@@ -24,6 +24,7 @@ func Run(
 			removeEnv(projectPath)
 		}
 
+		clearScreen()
 		runCommand(runCommandParams{
 			command:    command,
 			timeout:    timeoutString,
@@ -56,6 +57,8 @@ func Run(
 		directory:  projectPath,
 		allowInput: false,
 	})
+
+	clearScreen()
 	runCommand(runCommandParams{
 		command:    command,
 		timeout:    timeoutString,
