@@ -21,6 +21,7 @@ func runCommand(params runCommandParams) {
 	if params.timeout != "" {
 		program = "timeout"
 		arguments = []string{
+			"--foreground",
 			params.timeout,
 			"bash",
 			"-c",
