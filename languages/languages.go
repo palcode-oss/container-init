@@ -10,7 +10,7 @@ import (
 
 var languages = map[string]func(){
 	"python": python.Run,
-	"node":   node.Run,
+	"nodejs": node.Run,
 	"bash":   bash.Run,
 	"java":   java.Run,
 	"prolog": prolog.Run,
