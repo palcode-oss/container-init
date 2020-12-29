@@ -23,7 +23,7 @@ func Run() {
 			return moduleCommand
 		},
 		EnvSetupFunction: func(projectPath string) {
-			envPath := path.Join(projectPath, "env")
+			envPath := path.Join(projectPath, "env", "bin", "activate")
 
 			if _, err := os.Stat(envPath); os.IsNotExist(err) {
 				fmt.Println("Setting up environment...")
