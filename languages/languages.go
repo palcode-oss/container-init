@@ -2,6 +2,7 @@ package languages
 
 import (
 	"github.com/palcode-oss/runner-common/languages/bash"
+	_go "github.com/palcode-oss/runner-common/languages/go"
 	"github.com/palcode-oss/runner-common/languages/java"
 	"github.com/palcode-oss/runner-common/languages/node"
 	"github.com/palcode-oss/runner-common/languages/prolog"
@@ -14,6 +15,7 @@ var languages = map[string]func(){
 	"bash":   bash.Run,
 	"java":   java.Run,
 	"prolog": prolog.Run,
+	"go":     _go.Run,
 }
 
 func Run(language string) {
