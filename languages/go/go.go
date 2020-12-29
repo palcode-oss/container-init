@@ -30,6 +30,7 @@ func Run() {
 					"app/v2",
 				)
 				modCommand.Stdout = os.Stdout
+				modCommand.Dir = projectPath
 				_ = modCommand.Run()
 			}
 		},
