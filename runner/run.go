@@ -9,31 +9,26 @@ type ModuleFunction func(projectPath string) ([]string, bool, bool)
 type EnvSetupFunction func(projectPath string)
 type ModuleCommandGenerator func(modules []string) string
 
-type runParams struct {
-	command                string
-	moduleFunction         ModuleFunction
-	moduleCommandGenerator ModuleCommandGenerator
-	envSetupFunction       EnvSetupFunction
+type RunParams struct {
+	Command                string
+	ModuleFunction         ModuleFunction
+	ModuleCommandGenerator ModuleCommandGenerator
+	EnvSetupFunction       EnvSetupFunction
 }
 
-func Run(
-	command string,
-	moduleFunction ModuleFunction,
-	moduleCommandGenerator ModuleCommandGenerator,
-	envSetupFunction EnvSetupFunction,
-) {
+func Run(params RunParams) {
 	const projectPath = "/usr/src/app"
 	timeoutString := os.Args[1]
 
-	modules, canRemoveEnv, success := moduleFunction(projectPath)
+	modules, canRemoveEnv, success := params.ModuleFunction(projectPath)
 	if len(modules) == 0 {
 		if canRemoveEnv {
 			removeEnv(projectPath)
 		}
 
-		clearScreen()
+		ClearScreen()
 		runCommand(runCommandParams{
-			command:    command,
+			command:    params.Command,
 			timeout:    timeoutString,
 			directory:  projectPath,
 			allowInput: true,
@@ -48,7 +43,7 @@ func Run(
 		fmt.Println("I'll run your code now so you can see what happened:")
 
 		runCommand(runCommandParams{
-			command:    command,
+			command:    params.Command,
 			timeout:    "3s",
 			directory:  projectPath,
 			allowInput: false,
@@ -57,17 +52,17 @@ func Run(
 		return
 	}
 
-	envSetupFunction(projectPath)
-	moduleCommand := moduleCommandGenerator(modules)
+	params.EnvSetupFunction(projectPath)
+	moduleCommand := params.ModuleCommandGenerator(modules)
 	runCommand(runCommandParams{
 		command:    moduleCommand,
 		directory:  projectPath,
 		allowInput: false,
 	})
 
-	clearScreen()
+	ClearScreen()
 	runCommand(runCommandParams{
-		command:    command,
+		command:    params.Command,
 		timeout:    timeoutString,
 		directory:  projectPath,
 		allowInput: true,

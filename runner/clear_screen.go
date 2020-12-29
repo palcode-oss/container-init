@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func clearScreen() {
+func ClearScreen() {
 	clearCommand := exec.Command("clear")
 	clearCommand.Stdout = os.Stdout
 	_ = clearCommand.Run()
