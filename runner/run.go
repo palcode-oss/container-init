@@ -16,6 +16,10 @@ type RunParams struct {
 	EnvSetupFunction       EnvSetupFunction
 }
 
+func NoopModuleFunction(projectPath string) ([]string, bool, bool) {
+	return []string{}, false, true
+}
+
 func Run(params RunParams) {
 	const projectPath = "/usr/src/app"
 	timeoutString := os.Args[1]
