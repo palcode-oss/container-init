@@ -2,8 +2,8 @@ package node
 
 import (
 	"errors"
-	"github.com/palcode-oss/runner-common/languages/node/detect_modules"
-	"github.com/palcode-oss/runner-common/runner"
+	"github.com/palcode-oss/container-init/languages/node/detect_modules"
+	"github.com/palcode-oss/container-init/runner"
 	"os"
 	"os/exec"
 	"path"

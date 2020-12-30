@@ -2,7 +2,7 @@ package _go
 
 import (
 	"errors"
-	"github.com/palcode-oss/runner-common/runner"
+	"github.com/palcode-oss/container-init/runner"
 	"os"
 	"os/exec"
 	"path"

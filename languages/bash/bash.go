@@ -1,6 +1,6 @@
 package bash
 
-import "github.com/palcode-oss/runner-common/runner"
+import "github.com/palcode-oss/container-init/runner"
 
 func Run() {
 	params := runner.RunParams{

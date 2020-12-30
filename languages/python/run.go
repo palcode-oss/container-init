@@ -2,8 +2,8 @@ package python
 
 import (
 	"fmt"
-	"github.com/palcode-oss/runner-common/languages/python/detect_modules"
-	"github.com/palcode-oss/runner-common/runner"
+	"github.com/palcode-oss/container-init/languages/python/detect_modules"
+	"github.com/palcode-oss/container-init/runner"
 	"os"
 	"os/exec"
 	"path"
