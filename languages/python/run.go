@@ -23,10 +23,11 @@ func Run() {
 			return moduleCommand
 		},
 		EnvSetupFunction: func(projectPath string) {
-			envPath := path.Join(projectPath, "env", "bin", "activate")
+			envActivatePath := path.Join(projectPath, "env", "bin", "activate")
 
-			if _, err := os.Stat(envPath); os.IsNotExist(err) {
+			if _, err := os.Stat(envActivatePath); os.IsNotExist(err) {
 				fmt.Println("Setting up environment...")
+				envPath := path.Join(projectPath, "env")
 				venvCommand := exec.Command(
 					"python",
 					"-m",
