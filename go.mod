@@ -1,4 +1,4 @@
-module github.com/palcode-oss/runner-common
+module github.com/palcode-oss/container-init
 
 go 1.16
 
