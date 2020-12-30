@@ -1,12 +1,13 @@
 package languages
 
 import (
-	"github.com/palcode-oss/runner-common/languages/bash"
-	_go "github.com/palcode-oss/runner-common/languages/go"
-	"github.com/palcode-oss/runner-common/languages/java"
-	"github.com/palcode-oss/runner-common/languages/node"
-	"github.com/palcode-oss/runner-common/languages/prolog"
-	"github.com/palcode-oss/runner-common/languages/python"
+	"github.com/palcode-oss/container-init/languages/bash"
+	"github.com/palcode-oss/container-init/languages/cpp"
+	_go "github.com/palcode-oss/container-init/languages/go"
+	"github.com/palcode-oss/container-init/languages/java"
+	"github.com/palcode-oss/container-init/languages/node"
+	"github.com/palcode-oss/container-init/languages/prolog"
+	"github.com/palcode-oss/container-init/languages/python"
 )
 
 var languages = map[string]func(){
@@ -16,6 +17,7 @@ var languages = map[string]func(){
 	"java":   java.Run,
 	"prolog": prolog.Run,
 	"go":     _go.Run,
+	"cpp":    cpp.Run,
 }
 
 func Run(language string) {

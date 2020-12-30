@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/palcode-oss/runner-common/languages"
+	"github.com/palcode-oss/container-init/languages"
 	"os"
 )
 
