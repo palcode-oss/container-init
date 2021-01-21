@@ -76,4 +76,5 @@ var PythonBuiltIns = [...]string{
 	"zlib",
 	"os",
 	"copy",
+	"random",
 }
